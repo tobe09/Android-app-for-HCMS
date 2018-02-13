@@ -1,0 +1,143 @@
+﻿using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Json;
+using System;
+
+namespace PPlusTrial
+{
+    class DataApi
+    {
+        private HttpClient _client;                 //private backing variable for client property
+        public HttpClient Client
+        {
+            get
+            {
+                _client = new HttpClient();
+                _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                return _client;
+            }
+        }
+
+        private HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.RequestTimeout);  //default response for checking response status
+
+        //get data from web api
+        public dynamic Get(string restUrl)
+        {
+            dynamic result;
+            
+            using (Client)
+            {
+                Client.GetAsync(restUrl).ContinueWith(task => response = task.Result);                      //set response as gotten from server
+                result = CheckResult(ref response);                                                     //check response status by reference
+            }
+
+            return result;
+        }
+
+        //post/send data and get response from web api
+        public dynamic Post(string restUrl, HttpContent content)
+        {
+            dynamic result;
+            
+            using (Client)
+            {
+                Client.PostAsync(restUrl, content).ContinueWith(task => response = task.Result);             //set response as gotten from server
+                result = CheckResult(ref response);                                                     //check response status by reference
+            }
+
+            return result;
+        }
+
+        //put/update data and get response from web api
+        public dynamic Put(string restUrl, HttpContent content)
+        {
+            dynamic result;
+            
+            using (Client)
+            {
+                Client.PutAsync(restUrl, content).ContinueWith(task => response = task.Result);             //set response as gotten from server
+                result = CheckResult(ref response);                                                     //check response status by reference
+            }
+
+            return result;
+        }
+
+        //delete data and get response from web api
+        public dynamic Delete(string restUrl)
+        {
+            dynamic result;
+            
+            using (Client)
+            {
+                Client.DeleteAsync(restUrl).ContinueWith(task => response = task.Result);                   //set response as gotten from server
+                result = CheckResult(ref response);                                                     //check response status by reference
+            }
+
+            return result;
+        }
+
+        //check if response has been gotten from asynchronous call
+        public dynamic CheckResult(ref HttpResponseMessage response)
+        {
+            dynamic result;
+
+            DateTime now = DateTime.Now;
+            DateTime futureLimit = DateTime.Now.AddSeconds(Values.Delay);
+
+            //check if response has been recieved for a stipulated delay period
+            while (now < futureLimit)
+            {
+                System.Threading.Thread.Sleep(Values.Sleep);                                  //sleep the main thread before checking
+                if (response.StatusCode != HttpStatusCode.RequestTimeout) break;             //check if response has been recieved
+                now = DateTime.Now;                                                          //increase DateTime value and recheck
+            }
+
+            //check status of the gotten response
+            if (response.StatusCode != HttpStatusCode.RequestTimeout)
+            {
+                result = GenerateResult(response);                                          //generate result
+            }
+            else
+            {
+                result = Values.NetworkTimeoutMsg;                                          //network timeout message
+            }
+
+            return result;
+        }
+
+        //generate and parse result for the caller
+        public dynamic GenerateResult(HttpResponseMessage response)
+        {
+            dynamic result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                result = response.Content.ReadAsStringAsync().Result;
+                result = JsonValue.Parse(result);
+            }
+            else
+            {
+                result = Values.ServerErrorMsg;                         //return formatted error message
+            }
+
+            return result;
+        }
+
+        //check if the response generated is a server side error or an actual response
+        public static bool ValidateResult(dynamic result)
+        {
+            bool status = true;
+
+            if (result.GetType() == Values.NetworkTimeoutMsg.GetType() || result.GetType() == Values.ServerErrorMsg.GetType())
+            {
+                if (result == Values.NetworkTimeoutMsg || result == Values.ServerErrorMsg)
+                {
+                    status = false;
+                }
+            }
+
+            return status;
+        }
+    }
+}

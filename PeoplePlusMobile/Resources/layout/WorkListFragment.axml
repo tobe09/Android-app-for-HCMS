@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10sp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout5"
+        android:background="#FF113377">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFFFF"
+            android:id="@+id/linearLayout4"
+            android:layout_marginBottom="1dp">
+            <TextView
+                android:text="Serial Number:     "
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textViewWkFrgSerNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#FF113377"
+                android:paddingLeft="10sp" />
+            <TextView
+                android:text="value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvwWkvSerialNo"
+                android:textColor="#FF113377" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFFFF"
+            android:id="@+id/linearLayout4"
+            android:layout_marginBottom="1dp">
+            <TextView
+                android:text="Message"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewMsgHeader"
+                android:textStyle="bold"
+                android:textColor="#FF113377"
+                android:paddingLeft="10sp" />
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvwWkvMsgInfo"
+                android:text="value"
+                android:textSize="13sp"
+                android:textColor="#FF113377"
+                android:paddingLeft="10sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFFFF"
+            android:id="@+id/linearLayout1"
+            android:layout_marginBottom="1dp">
+            <TextView
+                android:text="Approval Type:    "
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textViewApprTypeHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#FF113377"
+                android:paddingLeft="10sp" />
+            <TextView
+                android:text="value"
+                android:id="@+id/tvwWkvType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF113377" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFFFF"
+            android:id="@+id/linearLayout2"
+            android:layout_marginBottom="1dp">
+            <TextView
+                android:text="Sent By:                "
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textViewSentByHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#FF113377"
+                android:paddingLeft="10sp" />
+            <TextView
+                android:text="value"
+                android:id="@+id/tvwWkvSentBy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF113377" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFFFF"
+            android:id="@+id/linearLayout3">
+            <TextView
+                android:text="Date Sent:            "
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textViewDateSentHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#FF113377"
+                android:paddingLeft="10sp" />
+            <TextView
+                android:text="value"
+                android:id="@+id/tvwWkvDateSent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF113377" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:minHeight="30px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout6" />
+</LinearLayout>

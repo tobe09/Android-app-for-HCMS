@@ -1,0 +1,207 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using Android;
+
+namespace PPlusTrial
+{
+    [Activity(Label = "ExpandableListviewActivity")]
+    public class ExpandableListviewActivity : Activity
+    {
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.ExpandableListview);
+
+            ExpandableListView expListView = FindViewById<ExpandableListView>(Resource.Id.expandableListView1);
+
+            //Bind list
+            List<string> parentList = GenerateParents();
+            Dictionary<string, List<string>> childDictionaryList = GenerateChildren(parentList);
+            ExpandableListAdapter listAdapter = new ExpandableListAdapter(this, parentList, childDictionaryList);
+            expListView.SetAdapter(listAdapter);
+
+            //expListView.GroupClick += (sender, eventArgs) =>
+            //  {
+            //      if (eventArgs.GroupPosition == 2) StartActivity(typeof(AbsenteeismActivity));
+            //  };
+            
+            //Listening to child item selection
+            expListView.ChildClick += delegate (object sender, ExpandableListView.ChildClickEventArgs e)
+            {
+                int parent = e.GroupPosition;
+                int child = e.ChildPosition;
+
+                switch (parent)
+                {
+                    case 0:     //leave
+                        if (child == 0) { StartActivity(typeof(MainActivity)); }          //request
+                        else if (child == 1) { StartActivity(typeof(MainActivity)); }    //approval
+                        else if (child == 2) { StartActivity(typeof(MainActivity)); }    //recall
+                        else { StartActivity(typeof(MainActivity)); }                   //extension
+                        break;
+
+                    case 1:     //medical
+                        if(child==0) { StartActivity(typeof(MainActivity)); }       //request
+                        else { StartActivity(typeof(MainActivity)); }               //approval
+                        break;
+
+                    case 2:     //absenteeism
+                       StartActivity(typeof(MainActivity));
+                        break;
+
+                    case 3:     //training
+                        if (child == 0) { StartActivity(typeof(MainActivity)); }    //request
+                        else { StartActivity(typeof(MainActivity)); }               //approval
+                        break;
+
+                    default:
+                        break;
+                }
+            };
+
+            //Listening to group expand //modified so that on selection of one group other opened group has been closed
+            expListView.GroupExpand += delegate (object sender, ExpandableListView.GroupExpandEventArgs e)
+            {
+                int previousGroup = -1;
+                if (e.GroupPosition != previousGroup) expListView.CollapseGroup(previousGroup);
+                previousGroup = e.GroupPosition;
+            };
+
+            //Listening to group collapse
+            expListView.GroupCollapse += delegate (object sender, ExpandableListView.GroupCollapseEventArgs e)
+            {
+                Toast.MakeText(this, "Group collapsed", ToastLength.Short).Show();
+            };
+
+            //Listening to group collapse
+            expListView.GroupExpand += delegate (object sender, ExpandableListView.GroupExpandEventArgs e)
+            {
+                Toast.MakeText(this, "Group expanded", ToastLength.Short).Show();
+            };
+        }
+
+        //generate parent items
+        private List<string> GenerateParents()
+        {
+            List<string> parentItems = new List<string>();
+
+            parentItems.Add("Leave");
+            parentItems.Add("Medical");
+            parentItems.Add("Absent");
+            parentItems.Add("Training Approval");
+
+            return parentItems;
+        }
+
+        //generate children items
+        private Dictionary<string,List<string>> GenerateChildren(List<string> parentItems)
+        {
+            Dictionary<string, List<string>> childrenItems = new Dictionary<string, List<string>>();
+
+            List<string> leaveList = new List<string> { "Leave Request", "Leave Approval", "Leave Recall", "Leave Extension" };
+            List<string> medicalList = new List<string> { "Request", "Approval" };
+            List<string> absentList = new List<string> { "Absenteeism" };
+            List<string> trainingList = new List<string> { "Request", "Approval" };
+
+            childrenItems[parentItems[0]] = leaveList;
+            childrenItems[parentItems[1]] = medicalList;
+            childrenItems[parentItems[2]] = absentList;
+            childrenItems[parentItems[3]] = trainingList;
+
+            return childrenItems;
+        }
+    }
+
+    //public class ExpandableListAdapter : BaseExpandableListAdapter
+    //{
+    //    private Activity _context;
+    //    private List<string> _parentGroup; 
+    //    private Dictionary<string, List<string>> _childGroup;
+
+    //    public ExpandableListAdapter(Activity context, List<string> parentGroup, Dictionary<string, List<string>> childGroup)
+    //    {
+    //        _context = context;
+    //        _parentGroup = parentGroup;
+    //        _childGroup = childGroup;
+    //    }
+
+
+    //    //for child item view
+    //    public override Java.Lang.Object GetChild(int parentPosition, int childPosition)
+    //    {
+    //        return _childGroup[_parentGroup[parentPosition]][childPosition];
+    //    }
+
+    //    public override long GetChildId(int groupPosition, int childPosition)
+    //    {
+    //        return childPosition;
+    //    }
+
+    //    public override View GetChildView(int parentPosition, int childPosition, bool isLastChild, View convertView, ViewGroup parent)
+    //    {
+    //        string childText = (string)GetChild(parentPosition, childPosition);
+
+    //        convertView = convertView ?? _context.LayoutInflater.Inflate(Resource.Layout.ChildItems, null);
+    //        TextView tvwChild = (TextView)convertView.FindViewById(Resource.Id.tvwChildHome);
+    //        tvwChild.Text = childText;
+
+    //        return convertView;
+    //    }
+
+    //    public override int GetChildrenCount(int parentPosition)
+    //    {
+    //        return _childGroup[_parentGroup[parentPosition]].Count;
+    //    }
+
+
+    //    //for parent item view
+    //    public override Java.Lang.Object GetGroup(int groupPosition)
+    //    {
+    //        return _parentGroup[groupPosition];
+    //    }
+
+    //    public override int GroupCount
+    //    {
+    //        get { return _parentGroup.Count; }
+    //    }
+
+    //    public override long GetGroupId(int groupPosition)
+    //    {
+    //        return groupPosition;
+    //    }
+
+    //    public override View GetGroupView(int groupPosition, bool isExpanded, View convertView, ViewGroup parent)
+    //    {
+    //        string headerTitle = (string)GetGroup(groupPosition);
+
+    //        convertView = convertView ?? _context.LayoutInflater.Inflate(Resource.Layout.ParentItem, null);
+    //        TextView tvwParent = (TextView)convertView.FindViewById(Resource.Id.tvwParentHome);
+    //        tvwParent.Text = headerTitle;
+
+    //        return convertView;
+    //    }
+
+    //    public override bool HasStableIds
+    //    {
+    //        get { return false; }
+    //    }
+
+    //    public override bool IsChildSelectable(int groupPosition, int childPosition)
+    //    {
+    //        return true;
+    //    }
+
+    //    class ViewHolderItem : Java.Lang.Object
+    //    {
+    //    }
+    //}
+}

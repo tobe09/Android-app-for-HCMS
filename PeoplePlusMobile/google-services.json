@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "136881429495",
+    "firebase_url": "https://peopleplusmobile.firebaseio.com",
+    "project_id": "peopleplusmobile",
+    "storage_bucket": "peopleplusmobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:136881429495:android:bfef4fe3c84671a6",
+        "android_client_info": {
+          "package_name": "PeoplePlusMobile.PeoplePlusMobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "136881429495-9ilsd5mqpai53mb9ggk3bu3bqu4orpco.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW3C0f4LSn9fdMttzuzNe5UohEdE18XHc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

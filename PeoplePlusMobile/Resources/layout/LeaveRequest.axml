@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF113377">
+    <TextView
+        android:text="LEAVE REQUEST"
+        style="@style/styleTvwMainHeader"
+        android:id="@+id/tvwHeadingLevReq" />
+    <TextView
+        style="@style/styleTvwMainMessage"
+        android:id="@+id/tvwMsgLeaveReq" />
+    <ScrollView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView1">
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1">
+            <TextView
+                style="@style/styleTvwSubHeaderFirst"
+                android:text="Leave Type" />
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spnLeaveReq"
+                android:background="@android:drawable/btn_dropdown" />
+            <TextView
+                style="@style/styleTvwSubHeader"
+                android:text="No of Days Left" />
+            <TextView
+                style="@style/styleTvw"
+                android:id="@+id/tvwNoOfDaysleft" />
+            <TextView
+                style="@style/styleTvwSubHeader"
+                android:text="Start Date" />
+            <EditText
+                style="@style/styleEdtDate"
+                android:id="@+id/edtStartDate" />
+            <TextView
+                style="@style/styleTvwSubHeader"
+                android:text="Resumption Date" />
+            <EditText
+                style="@style/styleEdtDate"
+                android:id="@+id/edtEndDate" />
+            <TextView
+                style="@style/styleTvwSubHeader"
+                android:text="No of Days" />
+            <TextView
+                style="@style/styleTvw"
+                android:id="@+id/tvwNoOfDays" />
+            <TextView
+                style="@style/styleTvwSubHeader"
+                android:text="Relief Officer" />
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spnReliefOfficer"
+                android:background="@android:drawable/btn_dropdown" />
+            <CheckBox
+                android:text="Require Leave Allowance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/chkAllowance"
+                android:enabled="false"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="20sp"
+                android:textSize="17sp" />
+            <TextView
+                style="@style/styleTvwSubHeader"
+                android:text="Reason" />
+            <EditText
+                style="@style/styleEdtReason"
+                android:id="@+id/edtReasonReq" />
+            <Button
+                style="@style/styleBtnSubmit"
+                android:id="@+id/btnSubmitLeaveReq" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

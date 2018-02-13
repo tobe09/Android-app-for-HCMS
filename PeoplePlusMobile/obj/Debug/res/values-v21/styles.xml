@@ -1,0 +1,1 @@
+<resources><!--For api level 21 (android 5.0) and above--><style name="App_Theme" parent="@android:style/Theme.Holo"></style></resources>

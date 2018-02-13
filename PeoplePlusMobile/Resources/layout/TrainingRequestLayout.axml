@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF113377">
+    <TextView
+        android:text="TRAINING REQUEST"
+        style="@style/styleTvwMainHeader"
+        android:id="@+id/tvwHeadingTrnReq" />
+    <TextView
+        style="@style/styleTvwMainMessage"
+        android:id="@+id/tvwMsgTrnReq" />
+    <TextView
+        style="@style/styleTvwSubHeaderFirst"
+        android:text="List Of Trainings" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:id="@+id/spnrTrainingCode" />
+    <TextView
+        style="@style/styleTvwSubHeader"
+        android:text="List Of Nominees" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recyclerView1"
+        android:paddingBottom="20sp" />
+</LinearLayout>

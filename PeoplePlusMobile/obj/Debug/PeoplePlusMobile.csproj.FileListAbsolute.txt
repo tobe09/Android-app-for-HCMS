@@ -1,0 +1,110 @@
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\PeoplePlusMobile.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\PeoplePlusMobile.pdb
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\PeoplePlusMobile.PeoplePlusMobile.apk
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\PeoplePlusMobile.PeoplePlusMobile-Signed.apk
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Newtonsoft.Json.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Refractored.Controls.CircleImageView.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.Android.Arch.Core.Common.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.Android.Arch.Lifecycle.Common.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.Android.Arch.Lifecycle.Runtime.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.Android.Support.Annotations.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.Android.Support.Compat.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.Android.Support.Core.UI.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.Android.Support.Core.Utils.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.Android.Support.Fragment.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.Android.Support.Media.Compat.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.Android.Support.v7.RecyclerView.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.Firebase.Common.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.Firebase.Iid.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.Firebase.Messaging.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.GooglePlayServices.Base.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.GooglePlayServices.Basement.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Xamarin.GooglePlayServices.Tasks.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Newtonsoft.Json.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\Refractored.Controls.CircleImageView.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\PeoplePlusMobile.csprojResolveAssemblyReference.cache
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\XbdMerge\Xamarin.GooglePlayServices.Basement.dll.stamp
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\XbdMerge\Xamarin.GooglePlayServices.Tasks.dll.stamp
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\XbdMerge\Xamarin.GooglePlayServices.Base.dll.stamp
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\XbdMerge\Xamarin.Firebase.Common.dll.stamp
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\XbdMerge\Xamarin.Firebase.Iid.dll.stamp
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\XbdMerge\Xamarin.Firebase.Messaging.dll.stamp
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\googsvcsjson\values\goog_svcs_json.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\PeoplePlusMobile.dll
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\PeoplePlusMobile.pdb
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\android\bin\PeoplePlusMobile.PeoplePlusMobile.apk
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\appmenu.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\values\styles.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\childitemuserprofile.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\home.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\medicalrequest.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\baselayout.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\parentitem.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\childitems.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\medapprovaldialoglayout.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\profilepicdialog.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\absenteeism.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\lvlapprovaldialoglayout.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\trnapprovaldialoglayout.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\userprofile.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\worklistlayout.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\worklistfragment.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\trainingnominatedialog.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\trainingrecyclerrows.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\trainingrequestlayout.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\leaveextension.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\leaverecall.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\leaverequest.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\parentitemuserprofile.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\layout\main.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\values\strings.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\drawable\defaultprofile.jpg
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\drawable\cameraicon.png
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\drawable\galleryicon.png
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\drawable\uploadicon.png
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\values-v21\styles.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\drawable\roundbutton.xml
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\drawable\hrselfservice.png
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\drawable\neptunelogo.png
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\drawable\selfservice.jpg
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\drawable\login2.jpg
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\drawable\login3.jpg
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\drawable\login5.jpg
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\res\drawable\login4.jpg
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\R.cs.flag
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\uploadflags.txt
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\PeoplePlusMobile.dll.mdb
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\obj\Debug\android\assets\PeoplePlusMobile.dll.mdb
+C:\Users\NeptuneDev1\Documents\Visual Studio 2015\Projects\PeoplePlusMobile\PeoplePlusMobile\bin\Debug\PeoplePlusMobile.dll
+bin\Debug\Microsoft.CSharp.pdb
+bin\Debug\Mono.Android.pdb
+bin\Debug\mscorlib.pdb
+bin\Debug\System.Core.pdb
+bin\Debug\System.pdb
+bin\Debug\System.IO.Compression.pdb
+bin\Debug\System.Json.pdb
+bin\Debug\System.Net.Http.pdb
+bin\Debug\System.Xml.pdb
+bin\Debug\System.Runtime.Serialization.pdb
+bin\Debug\System.ServiceModel.Internals.pdb
+bin\Debug\System.Numerics.pdb
+bin\Debug\System.Xml.Linq.pdb
+bin\Debug\Mono.Security.pdb
+bin\Debug\System.ComponentModel.Composition.pdb
+obj\Debug\linksrc\PeoplePlusMobile.dll.mdb
+obj\Debug\linksrc\Microsoft.CSharp.pdb
+obj\Debug\linksrc\Mono.Android.pdb
+obj\Debug\linksrc\mscorlib.pdb
+obj\Debug\linksrc\System.Core.pdb
+obj\Debug\linksrc\System.pdb
+obj\Debug\linksrc\System.IO.Compression.pdb
+obj\Debug\linksrc\System.Json.pdb
+obj\Debug\linksrc\System.Net.Http.pdb
+obj\Debug\linksrc\System.Xml.pdb
+obj\Debug\linksrc\System.Runtime.Serialization.pdb
+obj\Debug\linksrc\System.ServiceModel.Internals.pdb
+obj\Debug\linksrc\System.Numerics.pdb
+obj\Debug\linksrc\System.Xml.Linq.pdb
+obj\Debug\linksrc\Mono.Security.pdb
+obj\Debug\linksrc\System.ComponentModel.Composition.pdb
+obj\Debug\designtime\Resource.Designer.cs

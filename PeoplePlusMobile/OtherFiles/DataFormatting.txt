@@ -1,0 +1,127 @@
+﻿private void BtnSubmitDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EditText edtUserId = FindViewById<EditText>(Resource.Id.edtUserId);
+                EditText edtPassword = FindViewById<EditText>(Resource.Id.edtPassword);
+
+                string restUrl = "http://10.152.2.15:5000/API/TRIAL/SUP002";
+                
+                dynamic result = new DataApi().Delete(restUrl);
+
+                bool status = new DataApi().CheckResult(result);
+                if (status)
+                {
+                    edtUserId.Text = result[0]["FIRST_NAME"] + ", Encrypted Password: " + result[0]["PASSWORD"];
+                    edtPassword.Text = "Successful Delete";
+                }
+                else
+                {
+                    edtUserId.Text = Values.ErrorMsg;
+                }
+            }
+            catch (Exception ex)
+            {
+                string a = ex.Message;
+                string b = ex.StackTrace;
+            }
+        }
+
+        private void BtnSubmitPut_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EditText edtUserId = FindViewById<EditText>(Resource.Id.edtUserId);
+                EditText edtPassword = FindViewById<EditText>(Resource.Id.edtPassword);
+
+                string restUrl = "http://10.152.2.15:5000/API/TRIAL/SUP001";
+
+                var content = new FormUrlEncodedContent(new Dictionary<string, string>
+                {
+                    { "Name", "Tobe" },
+                    { "Password", "TobePassword" }
+                });
+
+                dynamic result = new DataApi().Put(restUrl, content);
+
+                bool status = new DataApi().CheckResult(result);
+                if (status)
+                {
+                    edtUserId.Text = result[0]["USER_ID"];
+                    edtPassword.Text = "Successful PUT";
+                }
+                else
+                {
+                    edtUserId.Text = Values.ErrorMsg;
+                }
+            }
+            catch (Exception ex)
+            {
+                string a = ex.Message;
+                string b = ex.StackTrace;
+            }
+        }
+
+        private void BtnSubmitPost_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EditText edtUserId = FindViewById<EditText>(Resource.Id.edtUserId);
+                EditText edtPassword = FindViewById<EditText>(Resource.Id.edtPassword);
+
+                string restUrl = "http://10.152.2.15:5000/API/TRIAL";
+
+                var content = new FormUrlEncodedContent(new Dictionary<string, string>
+                {
+                    { "Name", "Tobe" },
+                    { "Password", "TobePassword" }
+                });
+
+                dynamic result = new DataApi().Post(restUrl, content);
+
+                bool status = new DataApi().CheckResult(result);
+                if (status)
+                {
+                    edtUserId.Text = "Posted";
+                    edtPassword.Text = "Successfully";
+                }
+                else
+                {
+                    edtUserId.Text = Values.ErrorMsg;
+                }
+            }
+            catch (Exception ex)
+            {
+                string a = ex.Message;
+                string b = ex.StackTrace;
+            }
+        }
+
+        private void BtnSubmitGet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EditText edtUserId = FindViewById<EditText>(Resource.Id.edtUserId);
+                EditText edtPassword = FindViewById<EditText>(Resource.Id.edtPassword);
+
+                string restUrl = "http://10.152.2.15:5000/API/TRIAL/SUP001";
+
+                dynamic result = new DataApi().Get(restUrl);
+
+                bool status = new DataApi().CheckResult(result);
+                if (status)
+                {
+                    edtUserId.Text = result[0]["USER_ID"];
+                    edtPassword.Text = new Encryption().Decrypt(result[0]["PASSWORD"]);
+                }
+                else
+                {
+                    edtUserId.Text = Values.ErrorMsg;
+                }
+            }
+            catch (Exception ex)
+            {
+                string a = ex.Message;
+                string b = ex.StackTrace;
+            }
+        }

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <item
+  android:id="@+id/home"
+  android:title="Home"/>
+
+  <item
+  android:id="@+id/wkListViewer"
+  android:title="WorkList Viewer"/>
+
+  <item
+  android:id="@+id/medicalRequest"
+  android:title="Medical Request">
+  </item>
+
+  <item
+  android:id="@+id/trainingRequest"
+  android:title="Training Request"/>
+
+  <item
+  android:id="@+id/absenteeism"
+  android:title="Absenteeism"/>
+
+  <item
+  android:id="@+id/userProfile"
+  android:title="User Profile"/>
+
+  <item
+  android:id="@+id/leave"
+  android:title="Leave">
+    <menu>
+      <item
+      android:id="@+id/leaveRequest"
+      android:title="Leave Request"/>
+
+      <item
+      android:id="@+id/leaveExtension"
+      android:title="Leave Extension"/>
+
+      <item
+      android:id="@+id/leaveRecall"
+      android:title="Leave Recall"/>
+    </menu>
+  </item>
+
+    <item
+    android:id="@+id/logout"
+    android:title="Log Out"/>
+  
+</menu>

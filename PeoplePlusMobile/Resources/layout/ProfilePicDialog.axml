@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <ImageView
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="300sp"
+        android:minHeight="300sp"
+        android:layout_gravity="center"
+        android:id="@+id/imageView1" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray">
+        <ImageButton
+            android:src="@drawable/galleryicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:background="@android:color/darker_gray"
+            android:id="@+id/fab1" />
+        <ImageButton
+            android:src="@drawable/cameraicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:background="@android:color/darker_gray"
+            android:id="@+id/fab2" />
+        <ImageButton
+            android:src="@drawable/uploadicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:background="@android:color/darker_gray"
+            android:id="@+id/fab3" />
+    </LinearLayout>
+</LinearLayout>
