@@ -2,7 +2,8 @@
 {
     class Values
     {
-        public const string ApiRootAddress = "http://193.167.1.10:80/api/";  //193.167.1.10:80  //10.152.2.15:5000  //169.254.138.177:80  //10.0.2.2:18018
+        public const string ApiRootAddress = "http://192.168.0.4:8080/api/"; 
+        //192.168.0.4:8080 (router)        //193.167.1.10:80 (dev machine)         //10.152.2.15:5000 (sharp proxy)
 
         public const string ErrorMsg = "An error has occured";
 

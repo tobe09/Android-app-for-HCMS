@@ -34,7 +34,9 @@ namespace PeoplePlusMobile
                 TextView tvwResultMsg = FindViewById<TextView>(Resource.Id.tvwMsgTrnReq);
                 string url = Values.ApiRootAddress + "training/getTrainings?compId=" + new AppPreferences().GetValue(User.CompId);
 
+                tvwResultMsg.BasicMsg(Values.LoadingMsg);
                 dynamic json = await new DataApi().GetAsync(url);
+                tvwResultMsg.Text = "";
                 if (IsJsonObject(json))
                 {
                     JsonValue TrainingResults = json["Training"];
@@ -73,14 +75,13 @@ namespace PeoplePlusMobile
                   {
                       Spinner spinner = (Spinner)sender;
 
-                      tvwResultMsg.Text = "";
-                          //save the CODE and SERIALNO of training selected
-                          ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
+                      //save the CODE and SERIALNO of training selected
+                      ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
                       ISharedPreferencesEditor editor = prefs.Edit();
                       editor.PutString("TrainingCode", lstTrainingCode[e.Position]);
 
-                          //var position = e.Position.Equals(0) ? 0 : e.Position - 1;
-                          if (e.Position > 0)
+                      //var position = e.Position.Equals(0) ? 0 : e.Position - 1;
+                      if (e.Position > 0)
                       {
                           editor.PutInt("TrainingSerialNo", selectedTraining[e.Position - 1].TrainingSerialNo);
                           editor.Apply();
@@ -92,19 +93,21 @@ namespace PeoplePlusMobile
                       }
 
                       AppPreferences appPrefs = new AppPreferences();
+                      tvwResultMsg.BasicMsg(Values.LoadingMsg);
                       mDatasource = await Nominees(lstTrainingCode[e.Position], appPrefs.GetValue(User.EmployeeNo), appPrefs.GetValue(User.CompId));
+                      tvwResultMsg.Text = "";
                       //mDatasource = await new GetNominees().Nominees(spinner.GetItemAtPosition(e.Position).ToString());
-                      if (mDatasource.Count == 0) FindViewById<TextView>(Resource.Id.tvwMsgTrnReq).ErrorMsg("No Employee To Nominate");
-                      else FindViewById<TextView>(Resource.Id.tvwMsgTrnReq).Text = "";
+                      if (mDatasource.Count == 0 && spnrTrainings.SelectedItemPosition != 0) tvwResultMsg.ErrorMsg("No Employee To Nominate");
+                      else tvwResultMsg.Text = "";
 
                       mAdapter = new EmpDetailsAdapter(mDatasource);
                       mAdapter.ItemClick += (s, args) =>
                       {
 
-                              //Toast.MakeText(this, "who's the BOSS now!", ToastLength.Short).Show();
-                              //Toast.MakeText(this, "who's the BOSS now!" + mDatasource[position].name, ToastLength.Short).Show();
+                          //Toast.MakeText(this, "who's the BOSS now!", ToastLength.Short).Show();
+                          //Toast.MakeText(this, "who's the BOSS now!" + mDatasource[position].name, ToastLength.Short).Show();
 
-                              editor.PutString("SelectedName", mDatasource[args].name);
+                          editor.PutString("SelectedName", mDatasource[args].name);
                           editor.PutInt("NomineeEmployeeNo", mDatasource[args].number);
                           editor.Apply();
 
@@ -297,7 +300,10 @@ namespace PeoplePlusMobile
                     { "Reason", view.FindViewById<EditText>(Resource.Id.edtTxtReason).Text },
                     { "Username", appPrefs.GetValue(User.UserId) }
                 });
+
+                tvwResultMsg.Text = Values.WaitingMsg;
                 dynamic json = await new DataApi().PostAsync(uri, NominateUser);
+                tvwResultMsg.Text = "";
                 if (DataApi.IsJsonObject(json))
                 {
                     if (json != null)

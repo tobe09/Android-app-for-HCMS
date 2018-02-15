@@ -14,13 +14,13 @@ namespace PeoplePlusMobile
 {
     class Encryption
     {
-        //To encrypt text
-        public string EncryptText(string textClearText)
+        //to encrypt text
+        public string EncryptText(string clearText)
         {
-            String clearValue = "";
-            for (int i = 0; i < textClearText.Length; i++)
+            string clearValue = "";
+            for (int i = 0; i < clearText.Length; i++)
             {
-                clearValue += (char)((int)(textClearText[i]) + 10);
+                clearValue += (char)(clearText[i] + 10);
             }
             return clearValue;
         }

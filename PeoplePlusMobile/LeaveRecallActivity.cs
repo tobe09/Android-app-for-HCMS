@@ -30,7 +30,6 @@ namespace PeoplePlusMobile
             SetContentView(Resource.Layout.LeaveRecall);
 
             //set date textview
-            TextView tvwMsg = FindViewById<TextView>(Resource.Id.tvwMsgLeaveRecall);
             EditText edtRecallDt = FindViewById<EditText>(Resource.Id.edtRecallDt);
             //  edtExtendTo.Text = DateTime.Today.ToString("d");
             edtRecallDt.Click += (s, e) =>
@@ -55,7 +54,6 @@ namespace PeoplePlusMobile
             TextView tvwMsg = FindViewById<TextView>(Resource.Id.tvwMsgLeaveRecall);
             EditText edtRecallDt = FindViewById<EditText>(Resource.Id.edtRecallDt);
             TextView tvwStDateRec = FindViewById<TextView>(Resource.Id.tvwStDateRec);
-            tvwMsg.Text = "";
 
                 //Call getworking Days   
                 if (tvwStDateRec.Text != "" && edtRecallDt.Text != "" && tvwStDateRec.Text != edtRecallDt.Text)
@@ -67,7 +65,9 @@ namespace PeoplePlusMobile
                 {
                     string restUrl1 = Values.ApiRootAddress + "LeaveRecall/GetWorkDays/?strFromDate=" + tvwStDateRec.Text + "&strToDate=" + edtRecallDt.Text + "&compId=" + new AppPreferences().GetValue(User.CompId);
 
+                    tvwMsg.BasicMsg(Values.WaitingMsg);
                     dynamic response = await new DataApi().GetAsync(restUrl1);
+                    tvwMsg.Text = "";
 
                     if (IsJsonObject(response))
                         SpentDays = (int)response + "";
@@ -85,7 +85,9 @@ namespace PeoplePlusMobile
                 //To get Employee Leave To be Recalled from the web api asynchronously and Bind To The Spinner
                 string restUrl = Values.ApiRootAddress + "LeaveRecall/GetEmployeeLv/?compId=" + new AppPreferences().GetValue(User.CompId) + "&EmployeeNo=" + new AppPreferences().GetValue(User.EmployeeNo);
 
+                tvwMsg.BasicMsg(Values.LoadingMsg);
                 dynamic response = await new DataApi().GetAsync(restUrl);
+                tvwMsg.Text = "";
 
                 bool success = DataApi.IsJsonObject(response);
                 if (success)
@@ -143,6 +145,7 @@ namespace PeoplePlusMobile
         //Used to Get Other Information
         private async void spnLeaveRec_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
+            TextView tvwMsg = FindViewById<TextView>(Resource.Id.tvwMsgLeaveRecall);
             Spinner spinner = (Spinner)sender;
             Array Leaveitem = leaveitemList.ToArray();
             if (e.Id != 0)
@@ -158,7 +161,9 @@ namespace PeoplePlusMobile
                 int RqstId = (int)double.Parse(Leaveitem.GetValue(e.Id - 1).ToString());
                 string restUrl2 = Values.ApiRootAddress + "LeaveRecall/GetLeaveInfo/?compId=" + new AppPreferences().GetValue(User.CompId) + "&RqstNo=" + RqstId + "&EmpNo=" + new AppPreferences().GetValue(User.EmployeeNo);
 
+                tvwMsg.BasicMsg(Values.WaitingMsg);
                 dynamic response = await new DataApi().GetAsync(restUrl2);
+                tvwMsg.Text = "";
 
                 if (IsJsonObject(response))
                 {
@@ -180,7 +185,7 @@ namespace PeoplePlusMobile
                 }
                 else
                 {
-                    FindViewById<TextView>(Resource.Id.tvwMsgLeaveRecall).ErrorMsg((string)response);
+                    tvwMsg.ErrorMsg((string)response);
                 }
             }
         }
@@ -222,8 +227,6 @@ namespace PeoplePlusMobile
         //Used To Do variuos checks And To save the records 
         private async void btnSubmitLvRec_Click(object sender, EventArgs e)
         {
-            (sender as Button).Enabled = false;
-
             TextView tvwMsg = FindViewById<TextView>(Resource.Id.tvwMsgLeaveRecall);
 
             string edtRecallDt = FindViewById<EditText>(Resource.Id.edtRecallDt).Text; //Get End Date
@@ -235,7 +238,6 @@ namespace PeoplePlusMobile
             {
                 try
                 {
-
                     string restUrl = Values.ApiRootAddress + "LeaveRecall";
                     var contentLeave = new FormUrlEncodedContent(new Dictionary<string, string>
                             {
@@ -252,7 +254,11 @@ namespace PeoplePlusMobile
                                  { "RecallDt", edtRecallDt}
                             });
 
+                    (sender as Button).Enabled = false;
+                    tvwMsg.BasicMsg(Values.WaitingMsg);
                     dynamic response = await new DataApi().PostAsync(restUrl, contentLeave);
+                    tvwMsg.Text = "";
+                    (sender as Button).Enabled = true;
 
                     bool success = DataApi.IsJsonObject(response);
                     if (success)
@@ -264,8 +270,8 @@ namespace PeoplePlusMobile
                             FindViewById<TextView>(Resource.Id.tvwResumeRec).Text = "";
                             FindViewById<EditText>(Resource.Id.edtRecallDt).Text = "";
                             FindViewById<Spinner>(Resource.Id.spnLeaveRec).SetSelection(0);
-                            tvwMsg.SuccessMsg("Records Saved Successfully");
                             LoadSpinner();
+                            tvwMsg.SuccessMsg("Records Saved Successfully");
                         }
                         else
                         {
@@ -289,8 +295,6 @@ namespace PeoplePlusMobile
                 else if (date <= DateTime.Now) tvwMsg.ErrorMsg("Please select a future date");
                 else if (selection == 0) tvwMsg.ErrorMsg("Please select a employee");
             }
-
-            (sender as Button).Enabled = true;
         }
 
         public override void OnBackPressed()

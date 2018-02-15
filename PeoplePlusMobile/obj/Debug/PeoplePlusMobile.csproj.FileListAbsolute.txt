@@ -107,4 +107,3 @@ obj\Debug\linksrc\System.Numerics.pdb
 obj\Debug\linksrc\System.Xml.Linq.pdb
 obj\Debug\linksrc\Mono.Security.pdb
 obj\Debug\linksrc\System.ComponentModel.Composition.pdb
-obj\Debug\designtime\Resource.Designer.cs

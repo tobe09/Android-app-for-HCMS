@@ -16,5 +16,11 @@ namespace PeoplePlusMobile
             tvwMsg.SetTextColor(Color.Red);
             tvwMsg.Text = msg;
         }
+
+        public static void BasicMsg(this TextView tvwMsg, string msg)
+        {
+            tvwMsg.SetTextColor(Color.White);
+            tvwMsg.Text = msg;
+        }
     }
 }

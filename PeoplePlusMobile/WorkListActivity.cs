@@ -32,9 +32,9 @@ namespace PeoplePlusMobile
 
             try
             {
-                tvwMainMsg.Text = Values.LoadingMsg;
                 string restUrl = Values.ApiRootAddress + "Approval?compId=" + new AppPreferences().GetValue(User.CompId) + "&empNo=" +
                     new AppPreferences().GetValue(User.EmployeeNo);
+                tvwMainMsg.BasicMsg(Values.LoadingMsg);
                 dynamic response = await new DataApi().GetAsync(restUrl);
                 tvwMainMsg.Text = "";
 
@@ -69,6 +69,14 @@ namespace PeoplePlusMobile
                             {
                                 Appraisee appraisee = (Appraisee)adapter[position];
 
+                                //check for internet access
+                                object[] networkStatus = await DataApi.NetworkAccessStatus();
+                                if (!(bool)networkStatus[0])
+                                {
+                                    tvwMainMsg.ErrorMsg((string)networkStatus[1]);
+                                    return;
+                                }
+
                                 if (appraisee.ApprovalType == "Medical")
                                 {
                                     restUrl = Values.ApiRootAddress + "Approval/GetMedicalRequest?compId=" + new AppPreferences().GetValue(User.CompId) + "&empNo=" +
@@ -102,17 +110,7 @@ namespace PeoplePlusMobile
                                                 string comment = view.FindViewById<EditText>(Resource.Id.edtMedComment).Text;
 
                                                 string status = await PostMedical(appraisee, response, "A", comment);
-                                                if (status == "")
-                                                {
-                                                    adapter.Remove(position);
-                                                    dialog.Dismiss();
-                                                    tvwMainMsg.SuccessMsg(Values.SuccessMsg);
-                                                }
-                                                else
-                                                {
-                                                    dialog.Dismiss();
-                                                    tvwMainMsg.ErrorMsg(status);
-                                                }
+                                                CompleteTask(status, adapter, position, dialog, tvwMainMsg);
                                             }
                                             catch (Exception ex)
                                             {
@@ -128,17 +126,7 @@ namespace PeoplePlusMobile
                                                 string comment = view.FindViewById<EditText>(Resource.Id.edtMedComment).Text;
 
                                                 string status = await PostMedical(appraisee, response, "D", comment);
-                                                if (status == "")
-                                                {
-                                                    adapter.Remove(position);
-                                                    dialog.Dismiss();
-                                                    tvwMainMsg.SuccessMsg(Values.SuccessMsg);
-                                                }
-                                                else
-                                                {
-                                                    dialog.Dismiss();
-                                                    tvwMainMsg.ErrorMsg(status);
-                                                }
+                                                CompleteTask(status, adapter, position, dialog, tvwMainMsg);
                                             }
                                             catch (Exception ex)
                                             {
@@ -166,7 +154,9 @@ namespace PeoplePlusMobile
                                     restUrl = Values.ApiRootAddress + "Approval/GetLeaveRequest?compId=" + new AppPreferences().GetValue(User.CompId) + "&empNo=" +
                                     new AppPreferences().GetValue(User.EmployeeNo) + "&reqId=" + appraisee.RequestId;
 
+                                    tvwMainMsg.BasicMsg(Values.WaitingMsg);
                                     response = await new DataApi().GetAsync(restUrl);
+                                    tvwMainMsg.Text = "";
 
                                     if (response["Error"] == "")
                                     {
@@ -194,17 +184,7 @@ namespace PeoplePlusMobile
                                                 string comment = view.FindViewById<EditText>(Resource.Id.edtLvlComment).Text;
 
                                                 string status = await PostLeave(appraisee, response, "A", comment);
-                                                if (status == "")
-                                                {
-                                                    adapter.Remove(position);
-                                                    dialog.Dismiss();
-                                                    tvwMainMsg.SuccessMsg(Values.SuccessMsg);
-                                                }
-                                                else
-                                                {
-                                                    dialog.Dismiss();
-                                                    tvwMainMsg.ErrorMsg(status);
-                                                }
+                                                CompleteTask(status, adapter, position, dialog, tvwMainMsg);
                                             }
                                             catch (Exception ex)
                                             {
@@ -220,17 +200,7 @@ namespace PeoplePlusMobile
                                                 string comment = view.FindViewById<EditText>(Resource.Id.edtLvlComment).Text;
 
                                                 string status = await PostLeave(appraisee, response, "D", comment);
-                                                if (status == "")
-                                                {
-                                                    adapter.Remove(position);
-                                                    dialog.Dismiss();
-                                                    tvwMainMsg.SuccessMsg(Values.SuccessMsg);
-                                                }
-                                                else
-                                                {
-                                                    dialog.Dismiss();
-                                                    tvwMainMsg.ErrorMsg(status);
-                                                }
+                                                CompleteTask(status, adapter, position, dialog, tvwMainMsg);
                                             }
                                             catch (Exception ex)
                                             {
@@ -258,7 +228,10 @@ namespace PeoplePlusMobile
                                     restUrl = Values.ApiRootAddress + "Approval/GetTrainingRequest?compId=" + new AppPreferences().GetValue(User.CompId) + "&empNo=" +
                                     new AppPreferences().GetValue(User.EmployeeNo) + "&reqId=" + appraisee.RequestId;
 
+                                    tvwMainMsg.BasicMsg(Values.WaitingMsg);
                                     response = await new DataApi().GetAsync(restUrl);
+                                    tvwMainMsg.Text = "";
+
                                     if (response["Error"] == "")
                                     {
                                         response = response["Values"];
@@ -282,17 +255,7 @@ namespace PeoplePlusMobile
                                                 string comment = view.FindViewById<EditText>(Resource.Id.edtTrnComment).Text;
 
                                                 string status = await PostTraining(appraisee, response, "A", comment);
-                                                if (status == "")
-                                                {
-                                                    adapter.Remove(position);
-                                                    dialog.Dismiss();
-                                                    tvwMainMsg.SuccessMsg(Values.SuccessMsg);
-                                                }
-                                                else
-                                                {
-                                                    dialog.Dismiss();
-                                                    tvwMainMsg.ErrorMsg(status);
-                                                }
+                                                CompleteTask(status, adapter, position, dialog, tvwMainMsg);
                                             }
                                             catch (Exception ex)
                                             {
@@ -308,17 +271,7 @@ namespace PeoplePlusMobile
                                                 string comment = view.FindViewById<EditText>(Resource.Id.edtTrnComment).Text;
 
                                                 string status = await PostTraining(appraisee, response, "D", comment);
-                                                if (status == "")
-                                                {
-                                                    adapter.Remove(position);
-                                                    dialog.Dismiss();
-                                                    tvwMainMsg.SuccessMsg(Values.SuccessMsg);
-                                                }
-                                                else
-                                                {
-                                                    dialog.Dismiss();
-                                                    tvwMainMsg.ErrorMsg(status);
-                                                }
+                                                CompleteTask(status, adapter, position, dialog, tvwMainMsg);
                                             }
                                             catch (Exception ex)
                                             {
@@ -343,7 +296,7 @@ namespace PeoplePlusMobile
 
                                 else
                                 {
-                                    tvwMainMsg.ErrorMsg("Request type not provisioned");
+                                    tvwMainMsg.ErrorMsg("Request type not provisioned");        //should not happen for mobile (handles only 3 approvals)
                                 }
                             }
                             catch(Exception ex)
@@ -374,6 +327,21 @@ namespace PeoplePlusMobile
             }
         }
 
+        public void CompleteTask(string status, ApprovalAdapter adp, int position, AlertDialog dlg, TextView tvwMsg)
+        {
+            if (status == "")
+            {
+                adp.Remove(position);
+                dlg.Dismiss();
+                tvwMsg.SuccessMsg(Values.SuccessMsg);
+            }
+            else
+            {
+                dlg.Dismiss();
+                tvwMsg.ErrorMsg(status);
+            }
+        }
+
         public async Task<string> PostMedical(Appraisee appraisee, dynamic response, string status, string comment)
         {
             string restUrl = Values.ApiRootAddress + "Approval";
@@ -392,7 +360,9 @@ namespace PeoplePlusMobile
                     {"RequestNo", (string)response[0]["REQ_NO"] }
                 });
 
+            FindViewById<TextView>(Resource.Id.tvwWkvMsg).BasicMsg(Values.WaitingMsg);
             response = await new DataApi().PostAsync(restUrl, content);
+            FindViewById<TextView>(Resource.Id.tvwWkvMsg).Text = "";
 
             bool success = DataApi.IsJsonObject(response); 
 
@@ -423,7 +393,9 @@ namespace PeoplePlusMobile
                     {"DayDiff", (int)response[0]["NoOfDays"]+""  }
             });
 
+            FindViewById<TextView>(Resource.Id.tvwWkvMsg).BasicMsg(Values.WaitingMsg);
             response = await new DataApi().PostAsync(restUrl, content);
+            FindViewById<TextView>(Resource.Id.tvwWkvMsg).Text = "";
 
             bool success = DataApi.IsJsonObject(response); // || response.ToString() == Values.ServerErrorMsg;
 
@@ -456,7 +428,9 @@ namespace PeoplePlusMobile
                     {"ProgramCode", (string)response[0]["Training"] }
                 });
 
+            FindViewById<TextView>(Resource.Id.tvwWkvMsg).BasicMsg(Values.WaitingMsg);
             response = await new DataApi().PostAsync(restUrl, content);
+            FindViewById<TextView>(Resource.Id.tvwWkvMsg).Text = "";
 
             bool success = DataApi.IsJsonObject(response);
 

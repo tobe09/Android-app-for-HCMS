@@ -33,13 +33,6 @@ namespace PeoplePlusMobile
                 tvw.Text = "Welcome " + new AppPreferences().GetValue(User.Name);
 
                 ImageView ProfileImage = FindViewById<ImageView>(Resource.Id.profileImage);
-                if (bmp == null)
-                {
-                    byte[] picByte = await GenerateProfilePic();
-                    bmp = BitmapFactory.DecodeByteArray(picByte, 0, picByte.Length);
-                    ProfileImage.SetImageBitmap(bmp);           //if the asynchronous call completes late
-                }
-                ProfileImage.SetImageBitmap(bmp);
 
                 ProfileImage.Click += (sender, e) =>
                 {
@@ -48,22 +41,64 @@ namespace PeoplePlusMobile
 
                     // Pass it with the Bundle class
                     Bundle bundle = new Bundle();
-                    MemoryStream stream = new MemoryStream();
-                    bmp?.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
-                    byte[] picByte = stream.ToArray();
-                    bundle.PutByteArray("imgId", picByte);
-
-                    newFragment.Arguments = bundle;
-
-                    //Show the Fragment
-                    newFragment.Show(ft, "dialog");
-
-                    newFragment.imageChanged += (s, bmpEv) =>
+                    using (MemoryStream stream = new MemoryStream())
                     {
-                        bmp = bmpEv;
-                        ProfileImage.SetImageBitmap(bmp);
+                        bmp?.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
+                        byte[] picByte = stream.ToArray();
+                        bundle.PutByteArray("imgId", picByte);
+                    }
+
+                    newFragment.Arguments = bundle;                    
+                    newFragment.Show(ft, "dialog");         //show the Fragment
+
+                    newFragment.imageChanged += async(s, bmpEv) =>
+                    {
+                        //convert bitmap to stream and send
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            bmpEv.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
+                            byte[] imageByte = stream.ToArray();
+                            try
+                            {
+                                string uri = Values.ApiRootAddress + "UserProfile/PutImage?empNo=" + new AppPreferences().GetValue(User.EmployeeNo) +
+                                "&empName=" + new AppPreferences().GetValue(User.UserId) + "&compId=" + new AppPreferences().GetValue(User.CompId);
+
+                                Toast.MakeText(this, Values.WaitingMsg, ToastLength.Short).Show();
+                                dynamic json = await new DataApi().PutAsync(uri, new ByteArrayContent(imageByte));
+
+                                bool success = DataApi.IsJsonObject(json);
+                                if (success)
+                                {
+                                    if (json["ErrorStatus"] == 0)
+                                    {
+                                        bmp = bmpEv;
+                                        ProfileImage.SetImageBitmap(bmp);
+                                        Toast.MakeText(this, "Uploaded successfully", ToastLength.Short).Show();
+                                    }
+                                    else
+                                    {
+                                        Toast.MakeText(this, "Upload failed", ToastLength.Short).Show();
+                                    }
+                                }
+                                else
+                                    Toast.MakeText(this, (string)json, ToastLength.Short).Show();
+                            }
+                            catch (Exception ex)
+                            {
+                                ex.Log();
+                                Toast.MakeText(this, "An error occured while uploading picture", ToastLength.Short).Show();
+                            }
+                        }
                     };
                 };
+
+                if (bmp == null)
+                {
+                    byte[] picByte = await GenerateProfilePic();
+                    bmp = BitmapFactory.DecodeByteArray(picByte, 0, picByte.Length);
+                    ProfileImage.SetImageBitmap(bmp);           //if the asynchronous call completes late
+                }
+                else ProfileImage.SetImageBitmap(bmp);
             }
             catch (Exception ex)
             {
@@ -83,11 +118,10 @@ namespace PeoplePlusMobile
         public async virtual Task<byte[]> GenerateProfilePic()
         {
             byte[] picByte;
-
-            string url = Values.ApiRootAddress + "UserProfile/GetUserImage?Id=" + new AppPreferences().GetValue(User.EmployeeNo);
-
+            
             try
             {
+                string url = Values.ApiRootAddress + "UserProfile/GetUserImage?Id=" + new AppPreferences().GetValue(User.EmployeeNo);
                 using (Stream imageStream = await new DataApi().GetImageAsync(url))
                 {
                     byte[] buffer = new byte[1024 * 1024];
@@ -356,16 +390,16 @@ namespace PeoplePlusMobile
         {
             base.OnCreateView(inflater, container, savedInstanceState);
 
-            View v = inflater.Inflate(Resource.Layout.ProfilePicDialog, container, false);
+            View view = inflater.Inflate(Resource.Layout.ProfilePicDialog, container, false);
 
-            imgView = v.FindViewById<ImageView>(Resource.Id.imageView1);
+            imgView = view.FindViewById<ImageView>(Resource.Id.imageView1);
 
             //Get image from arguments and set it to the ImageView
             byte[] imgPassed = Arguments.GetByteArray("imgId");
             Bitmap bmp = BitmapFactory.DecodeByteArray(imgPassed, 0, imgPassed.Length);
             imgView.SetImageBitmap(bmp);
 
-            ImageButton FABGallery = v.FindViewById<ImageButton>(Resource.Id.fab1);
+            ImageButton FABGallery = view.FindViewById<ImageButton>(Resource.Id.fab1);
 
             FABGallery.Click += (s, e) =>
             {
@@ -373,7 +407,7 @@ namespace PeoplePlusMobile
                 StartActivityForResult(Intent.CreateChooser(imageIntent, "Select photo"), (int)MediaType.Gallery);
             };
 
-            ImageButton FABCamera = v.FindViewById<ImageButton>(Resource.Id.fab2);
+            ImageButton FABCamera = view.FindViewById<ImageButton>(Resource.Id.fab2);
 
             FABCamera.Click += (s, e) =>
             {
@@ -382,9 +416,9 @@ namespace PeoplePlusMobile
             };
 
 
-            ImageButton FABUpload = v.FindViewById<ImageButton>(Resource.Id.fab3);
+            ImageButton FABUpload = view.FindViewById<ImageButton>(Resource.Id.fab3);
 
-            FABUpload.Click += async (s, e) =>
+            FABUpload.Click += (s, e) =>
             {
                 if (croppedBitmap == null)
                 {
@@ -392,47 +426,11 @@ namespace PeoplePlusMobile
                     return;
                 }
 
-                //convert bitmap to stream
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    croppedBitmap.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
-                    byte[] imageByte = stream.ToArray();
-
-                    string uri = Values.ApiRootAddress + "UserProfile/PutImage?empNo=" + new AppPreferences().GetValue(User.EmployeeNo) +
-                    "&empName=" + new AppPreferences().GetValue(User.UserId) + "&compId=" + new AppPreferences().GetValue(User.CompId);
-                    try
-                    {
-                        FABUpload.Enabled = false;
-                        dynamic json = await new DataApi().PutAsync(uri, new System.Net.Http.ByteArrayContent(imageByte));
-
-                        bool success = DataApi.IsJsonObject(json);
-                        if (success)
-                        {
-                            if (json["ErrorStatus"] == 0)
-                            {
-                                imageChanged?.Invoke(this, croppedBitmap);
-                                Toast.MakeText(Activity, "Uploaded successfully", ToastLength.Short).Show();
-                            }
-                            else
-                            {
-                                Toast.MakeText(Activity, "Upload failed", ToastLength.Short).Show();
-                            }
-                        }
-                        else
-                            Toast.MakeText(Activity, (string)json, ToastLength.Short).Show();
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.Log();
-                        Toast.MakeText(Activity, "An error occured while uploading picture", ToastLength.Short).Show();
-                    }
-                    FABUpload.Enabled = true;
-                    Dismiss();
-                }
+                imageChanged?.Invoke(this, croppedBitmap);
+                Dismiss();
             };
 
-
-            return v;
+            return view;
         }
 
         public override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)

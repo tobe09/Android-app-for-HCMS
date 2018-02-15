@@ -44,9 +44,10 @@ namespace PeoplePlusMobile
 
             try
             {
-                tvwMsg.Text = Values.LoadingMsg;
                 //to get the list of hospitals from the web api asynchronously
                 string restUrl = Values.ApiRootAddress + "MedicalRequest/?compId=" + new AppPreferences().GetValue(User.CompId);
+
+                tvwMsg.BasicMsg(Values.LoadingMsg);
                 dynamic response = await new DataApi().GetAsync(restUrl);
                 tvwMsg.Text = "";
 
@@ -79,8 +80,6 @@ namespace PeoplePlusMobile
 
         private async void BtnSubmitMedReq_Click(object sender, EventArgs e)
         {
-            (sender as Button).Enabled = false;
-
             TextView tvwMsg = FindViewById<TextView>(Resource.Id.tvwMsgMedReq);
             string dateStr = FindViewById<EditText>(Resource.Id.edtDateMedReq).Text;
             try
@@ -102,7 +101,11 @@ namespace PeoplePlusMobile
                         {"CompId", new AppPreferences().GetValue(User.CompId) }
                     });
 
+                    (sender as Button).Enabled = false;
+                    tvwMsg.BasicMsg(Values.WaitingMsg);
                     dynamic response = await new DataApi().PostAsync(restUrl, content);
+                    tvwMsg.Text = "";
+                    (sender as Button).Enabled = true;
 
                     bool success = DataApi.IsJsonObject(response);
                     if (success)
@@ -137,8 +140,6 @@ namespace PeoplePlusMobile
                 ex.Log();
                 tvwMsg.ErrorMsg(Values.ErrorMsg);
             }
-
-            (sender as Button).Enabled = true;
         }
 
         public override void OnBackPressed()

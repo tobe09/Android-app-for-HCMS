@@ -33,6 +33,8 @@ namespace PeoplePlusMobile
                 AppPreferences appPref = new AppPreferences();
                 string uri = Values.ApiRootAddress + "UserProfile/GetBasicDetails?compId=" + appPref.GetValue(User.CompId) + "&empNo=" + appPref.GetValue(User.EmployeeNo);
 
+                Toast.MakeText(this, Values.LoadingMsg, ToastLength.Short).Show();
+
                 dynamic json = await new DataApi().GetAsync(uri);
 
                 if (IsJsonObject(json))

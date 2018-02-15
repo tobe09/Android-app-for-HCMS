@@ -34,7 +34,8 @@ namespace PeoplePlusMobile
                     //ICollection<string> val = Intent.Extras.KeySet();
                     string title = Intent.Extras.GetString("title");
                     string body = Intent.Extras.GetString("body");
-                    StartActivity(typeof(WorkListActivity));
+                    if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(body)) StartActivity(typeof(WorkListActivity));
+                    else StartActivity(typeof(HomeActivity));
                 }
                 else
                     StartActivity(typeof(HomeActivity));
@@ -277,7 +278,7 @@ namespace PeoplePlusMobile
                         values[1] = "Connect to the internet to initialize device";
                 }
             }
-
+            
             return values;
         }
 

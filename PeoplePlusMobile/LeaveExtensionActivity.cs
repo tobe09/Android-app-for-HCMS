@@ -35,7 +35,11 @@ namespace PeoplePlusMobile
                 var dateTimeNow = DateTime.Now;
                 DatePickerDialog datePicker = new DatePickerDialog
                 (this,
-                (sender, eventArgs) => { edtExtendTo.Text = eventArgs.Date.Day + "/" + eventArgs.Date.Month + "/" + eventArgs.Date.Year; GetWorkDays(); },
+                (sender, eventArgs) =>
+                {
+                    edtExtendTo.Text = eventArgs.Date.Day + "/" + eventArgs.Date.Month + "/" + eventArgs.Date.Year;
+                    GetWorkDays();
+                },
                 dateTimeNow.Year, dateTimeNow.Month - 1, dateTimeNow.Day);
                 datePicker.Show();
             };
@@ -45,7 +49,9 @@ namespace PeoplePlusMobile
                 //to get other parameters to compute number of days from the web api asynchronously
                 string restUrl = Values.ApiRootAddress + "LeaveExtension/?compId=" + new AppPreferences().GetValue(User.CompId) + "&EmployeeNo=" + new AppPreferences().GetValue(User.EmployeeNo);
 
+                tvwMsg.BasicMsg(Values.LoadingMsg);
                 dynamic response = await new DataApi().GetAsync(restUrl);
+                tvwMsg.Text = "";
 
                 if (IsJsonObject(response))
                 {
@@ -225,8 +231,6 @@ namespace PeoplePlusMobile
         //Used To Do variuos checks And To save the records 
         private async void btnSubmitLeaveExt_Click(object sender, EventArgs e)
         {
-            (sender as Button).Enabled = false;
-
             TextView tvwMsg = FindViewById<TextView>(Resource.Id.tvwMsgLeaveExt);
             tvwMsg.Text = "";
 
@@ -268,7 +272,11 @@ namespace PeoplePlusMobile
                                 { "PrevReqId", (int)double.Parse(PrevReqId)+""}
                             });
 
+                        (sender as Button).Enabled = false;
+                        tvwMsg.BasicMsg(Values.WaitingMsg);
                         dynamic response = await new DataApi().PostAsync(restUrl, contentLeave);
+                        tvwMsg.Text = "";                   
+                        (sender as Button).Enabled = true;
 
                         bool success = IsJsonObject(response);
                         if (success)
@@ -306,7 +314,7 @@ namespace PeoplePlusMobile
                 }
 
             }
-            //''''''
+
             else
             {
 
@@ -314,8 +322,6 @@ namespace PeoplePlusMobile
                 else if (date <= resumeDate) tvwMsg.ErrorMsg("Extension date must be greater than previous resumption date");
                 else if (selection <= 0) tvwMsg.ErrorMsg("Please select a Leave Type");
             }
-
-            (sender as Button).Enabled = true;
         }
 
         public override void OnBackPressed()

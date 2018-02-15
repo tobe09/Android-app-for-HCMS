@@ -32,14 +32,12 @@ namespace PeoplePlusMobile
                 dateTimeNow.Year, dateTimeNow.Month - 1, dateTimeNow.Day);
                 datePicker.Show();
             };
-
+            
             tvwMsg.ErrorMsg((string)(await DataApi.NetworkAccessStatus())[1]);
         }
 
         private async void btnSubmitAbsReq_Click(object sender, EventArgs e)
         {
-            (sender as Button).Enabled = false;
-
             TextView tvwMsg = FindViewById<TextView>(Resource.Id.tvwMsg);
             TextView tvwReason = FindViewById<TextView>(Resource.Id.edtReasonAbsReq);
             string dateStr = FindViewById<EditText>(Resource.Id.edtDateAbsReq).Text;
@@ -60,7 +58,11 @@ namespace PeoplePlusMobile
                     { "CompId", new AppPreferences().GetValue(User.CompId) }
                 });
 
+                    (sender as Button).Enabled = false;
+                    tvwMsg.BasicMsg(Values.WaitingMsg);
                     dynamic response = await new DataApi().PostAsync(restUrl, content);
+                    tvwMsg.Text = "";
+                    (sender as Button).Enabled = true;
 
                     bool success = DataApi.IsJsonObject(response);
                     if (success)

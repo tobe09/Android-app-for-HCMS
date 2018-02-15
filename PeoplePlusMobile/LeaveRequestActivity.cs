@@ -58,8 +58,9 @@ namespace PeoplePlusMobile
             {
                 //to get other parameters to compute number of days from the web api asynchronously
                 string restUrl = Values.ApiRootAddress + "LeaveRequest/?compId=" + new AppPreferences().GetValue(User.CompId) + "&EmployeeNo=" + new AppPreferences().GetValue(User.EmployeeNo);
-
+                tvwMsg.BasicMsg(Values.LoadingMsg);
                 dynamic response = await new DataApi().GetAsync(restUrl);
+                tvwMsg.Text = "";
 
                 if (IsJsonObject(response))
                 {
@@ -90,7 +91,9 @@ namespace PeoplePlusMobile
                 // string urlMethod = "LeaveRequest" + "/" + "GetReliefOfficer";
                 string restUrl2 = Values.ApiRootAddress + "LeaveRequest/GetReliefOfficer/?compId=" + new AppPreferences().GetValue(User.CompId) + "&LocationCode=" + new AppPreferences().GetValue(User.LocationCode) + "&Department=" + new AppPreferences().GetValue(User.DeptCode) + "&EmployeeNo=" + new AppPreferences().GetValue(User.EmployeeNo);
 
+                tvwMsg.BasicMsg(Values.LoadingMsg);
                 dynamic response = await new DataApi().GetAsync(restUrl2);
+                tvwMsg.Text = "";
 
                 if (IsJsonObject(response))
                 {
@@ -133,7 +136,9 @@ namespace PeoplePlusMobile
             {
                 string restUrl4 = Values.ApiRootAddress + "LeaveRequest/GetWorkDays/?strFromDate=" + startDate + "&strToDate=" + endDate + "&compId=" + new AppPreferences().GetValue(User.CompId);
 
+                tvwMsg.BasicMsg(Values.WaitingMsg);
                 dynamic response = await new DataApi().GetAsync(restUrl4);
+                tvwMsg.Text = "";
 
                 if (IsJsonObject(response))
                 {
@@ -285,8 +290,6 @@ namespace PeoplePlusMobile
         //Used To Do variuos checks And To save the records 
         private async void BtnSubmitLeaveReq_Click(object sender, EventArgs e)
         {
-            (sender as Button).Enabled = false;
-
             TextView tvwMsg = FindViewById<TextView>(Resource.Id.tvwMsgLeaveReq);
             string msg = ValidEntries();
 
@@ -315,7 +318,11 @@ namespace PeoplePlusMobile
 
                 try
                 {
+                    (sender as Button).Enabled = false;
+                    tvwMsg.BasicMsg(Values.WaitingMsg);
                     dynamic responseL = await new DataApi().GetAsync(restUrl4);
+                    tvwMsg.Text = "";
+                    (sender as Button).Enabled = true;
 
                     bool success = IsJsonObject(responseL);
                     if (success)
@@ -342,7 +349,11 @@ namespace PeoplePlusMobile
                                 { "ReliefOfficer", spnRelOfficer.SelectedItem.ToString() }
                             });
 
+                            (sender as Button).Enabled = false;
+                            tvwMsg.BasicMsg(Values.WaitingMsg);
                             dynamic response = await new DataApi().PostAsync(restUrl, contentLeave);
+                            tvwMsg.Text = "";
+                            (sender as Button).Enabled = true;
 
                             success = DataApi.IsJsonObject(response);
                             if (success)
@@ -391,8 +402,6 @@ namespace PeoplePlusMobile
             {
                 tvwMsg.ErrorMsg(msg);
             }
-
-            (sender as Button).Enabled = true;
         }
 
         public override void OnBackPressed()
